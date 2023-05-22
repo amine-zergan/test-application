@@ -3,7 +3,8 @@ name: "ci checker:FinderJob app"
 on: 
   workflow_dispatch:
   push:
-    - main 
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -26,7 +27,7 @@ jobs:
       - run: flutter test
       - run: flutter build apk --debug --split-per-abi
       - run: flutter build appbundle
-      - name: Push to Releases
-      - run: echo "wait for add tags to bew version"
+      - name: Script
+        run: echo "task completed with succes"
       
 
