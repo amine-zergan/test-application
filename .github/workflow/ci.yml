@@ -1,0 +1,32 @@
+name: "ci checker:FinderJob app"
+
+on: 
+  workflow_dispatch:
+  push:
+    - main 
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & Release
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+      - uses: subosito/flutter-actions@v2
+        with:
+          flutter-version: '3.7.7'
+          channel: stable
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build apk --debug --split-per-abi
+      - run: flutter build appbundle
+      - name: Push to Releases
+      - run: echo "wait for add tags to bew version"
+      
+
