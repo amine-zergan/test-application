@@ -28,5 +28,13 @@ jobs:
       - run: flutter build appbundle
       - name: Script
         run: echo "task completed with succes"
-      
-
+      - uses: actions/upload-artifact@v1
+        with:
+          name: apk-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Run Last Task
+        run: | 
+          echo "******************************"
+          echo " job done with succes "
+          echo "*******************************"
+       
