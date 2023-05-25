@@ -1,7 +1,15 @@
+// ignore_for_file: library_prefixes
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:testapp/injection/di_injection.dart' as getIt;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  getIt.setup();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(
     const MyApp(),
   );
