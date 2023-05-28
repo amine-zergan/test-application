@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:testapp/injection/di_injection.dart' as getIt;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   getIt.setup();
+  await dotenv.load();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

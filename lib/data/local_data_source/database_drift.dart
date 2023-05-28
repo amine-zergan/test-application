@@ -11,7 +11,6 @@ import 'package:testapp/data/models/formation.dart';
 import 'package:testapp/data/models/language.dart';
 import 'package:testapp/data/models/profile.dart';
 import 'package:testapp/data/models/user.dart';
-
 part 'database_drift.g.dart';
 
 @DriftDatabase(
