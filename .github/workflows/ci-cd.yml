@@ -1,0 +1,77 @@
+name: deployments
+on:
+  push:
+    branches: [main,dev]
+jobs:
+  deploy_dev:
+    name: 'deploy to dev environment'
+    if: github.event.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    environment:  
+      name: development
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: SpicyPizza/create-envfile@v2
+        with:
+          envkey_ENVIRONMENT: ${{secrets.ENVIRONMENT}}
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter upgrade
+      - run: flutter pub get 
+      - run: flutter build apk 
+      - uses: actions/upload-artifact@v1
+        with:
+          name: apk-release
+          path: build/app/outputs/bundle/release/app-release.aab
+  deploy_staging:
+    name: "staging before production"
+    needs: deploy_dev
+    runs-on:  ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+      - run: flutter --version
+      - run: flutter pub get 
+      - run: flutter test
+  deploy_production:
+    name: 'deploy to prod environment'
+    if: github.event.ref == 'refs/heads/main'
+    needs: deploy_staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: SpicyPizza/create-envfile@v2
+        with:
+          envkey_ENVIRONMENT: ${{secrets.ENVIRONMENT}}
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build apk --debug --split-per-abi
+      - run: flutter build appbundle
+      - name: Script
+        run: echo "task completed with succes"
+      - uses: actions/upload-artifact@v1
+        with:
+          name: apk-release
+          path: build/app/outputs/bundle/release/app-release.aab
+      - name: Run Last Task
+        run: | 
+          echo "******************************"
+          echo " job done with succes "
+          echo "*******************************"
+    
