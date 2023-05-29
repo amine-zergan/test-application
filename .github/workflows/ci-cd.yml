@@ -44,7 +44,7 @@ jobs:
       - run: flutter test
   deploy_production:
     name: 'deploy to prod environment'
-    if: github.event.ref == 'refs/heads/main'
+    if: github.event.ref == 'refs/heads/dev'
     needs: deploy_staging
     runs-on: ubuntu-latest
     steps:
