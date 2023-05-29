@@ -1,7 +1,7 @@
 name: deployments
 on:
   push:
-    branches: [main,dev]
+    branches: [dev]
 jobs:
   deploy_dev:
     name: 'deploy to dev environment'
