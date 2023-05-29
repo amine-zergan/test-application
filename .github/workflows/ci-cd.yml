@@ -26,7 +26,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: apk-release
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: build/app/outputs/flutter-apk/app-release.apk
   deploy_staging:
     name: "staging before production"
     needs: deploy_dev
@@ -68,7 +68,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: apk-release
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: build/app/outputs/flutter-apk/app-release.apk
       - name: Run Last Task
         run: | 
           echo "******************************"
