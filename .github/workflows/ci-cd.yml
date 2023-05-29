@@ -49,9 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: SpicyPizza/create-envfile@v1
+      - uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_ENVIRONMENT: ${{secrets.ENVIRONMENT}}
+      - run: echo "****** ${{secrets.ENVIRONMENT}} ******"
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
