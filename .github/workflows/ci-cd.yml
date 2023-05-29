@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: SpicyPizza/create-envfile@v2
+      - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_ENVIRONMENT: ${{secrets.ENVIRONMENT}}
       - uses: subosito/flutter-action@v2
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: SpicyPizza/create-envfile@v2
+      - uses: SpicyPizza/create-envfile@v1
         with:
           envkey_ENVIRONMENT: ${{secrets.ENVIRONMENT}}
       - uses: subosito/flutter-action@v2
