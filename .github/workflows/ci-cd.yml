@@ -68,7 +68,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: apk-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/bundle/release/app-release.aab
       - name: Run Last Task
         run: | 
           echo "******************************"
