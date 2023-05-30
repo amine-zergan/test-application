@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:testapp/data/core/enumerate/evolution.dart';
+import 'package:testapp/data/core/enum/evolution.dart';
 import 'package:testapp/data/models/user.dart';
 
 /// ---------  ------------- ///

@@ -17,7 +17,6 @@
     "analysis_options.yaml": true,
     "pubspec.lock": true,
     "testapp.iml": true,
-    ".dart_tool": true,
     ".idea": true,
     "build": true
   }

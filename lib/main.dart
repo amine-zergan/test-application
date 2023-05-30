@@ -31,24 +31,22 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(
-        title: 'Portefeuille Developpeur',
-      ),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class HomePage extends StatelessWidget {
+  const HomePage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          title,
+          "Protefeuille Dev",
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),

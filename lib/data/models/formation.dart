@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:testapp/data/core/enumerate/degree_enum.dart';
+import 'package:testapp/data/core/enum/degree_enum.dart';
 import 'package:testapp/data/models/user.dart';
 
 @DataClassName("formations")

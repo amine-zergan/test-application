@@ -6,7 +6,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 class FileCvPdf {
-  static Future<File> createFile(String name) async {
+  static Future<File> createCvFile(String name) async {
     final pdf = Document();
     pdf.addPage(
       MultiPage(
