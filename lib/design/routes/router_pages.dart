@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:testapp/design/views/not_found_page/error_page.dart';
-import 'package:testapp/main.dart';
+import 'package:testapp/design/routes/route_name.dart';
+import 'package:testapp/design/views/errors/error_page.dart';
+import 'package:testapp/design/views/home/home_page.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(
     routes: <GoRoute>[
       GoRoute(
-        path: '/',
+        path: RouteName.homeRoute,
         builder: (context, state) => const HomePage(),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) =>
         const NotFoundPage(),
+    redirect: (context, state) {
+      return null;
+    },
   );
 }

@@ -3,10 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import 'package:testapp/design/routes/router_pages.dart';
 import 'package:testapp/injection/di_injection.dart' as getIt;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
   getIt.setup();
   await dotenv.load();
   SystemChrome.setPreferredOrientations([
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -31,42 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Protefeuille Dev",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        elevation: 10,
-        child: const Icon(
-          Icons.add,
-        ),
-      ),
+      routeInformationParser: AppRouter.router.routeInformationParser,
+      routeInformationProvider: AppRouter.router.routeInformationProvider,
+      routerDelegate: AppRouter.router.routerDelegate,
     );
   }
 }
