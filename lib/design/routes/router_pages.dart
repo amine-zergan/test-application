@@ -6,6 +6,7 @@ import 'package:testapp/design/views/home/home_page.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(
+    debugLogDiagnostics: true,
     routes: <GoRoute>[
       GoRoute(
         path: RouteName.homeRoute,

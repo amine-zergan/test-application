@@ -1,31 +1,38 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: library_prefixes
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'package:testapp/design/routes/router_pages.dart';
+import 'package:testapp/design/views/home/home_page.dart';
 import 'package:testapp/injection/di_injection.dart' as getIt;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
   getIt.setup();
-  await dotenv.load();
+  await dotenv.load(fileName: ".env");
+  String? env = dotenv.env["ENVIRONMENT"];
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
   runApp(
-    const MyApp(),
+    MyApp(
+      env: env ?? "Development",
+    ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    Key? key,
+    required this.env,
+  }) : super(key: key);
+  final String? env;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -34,9 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      routeInformationParser: AppRouter.router.routeInformationParser,
-      routeInformationProvider: AppRouter.router.routeInformationProvider,
-      routerDelegate: AppRouter.router.routerDelegate,
+      home: HomePage(
+        env: env,
+      ),
     );
   }
 }

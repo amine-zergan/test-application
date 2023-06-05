@@ -18,6 +18,7 @@
     "pubspec.lock": true,
     "testapp.iml": true,
     ".idea": true,
-    "build": true
+    "build": true,
+    "README.md": true
   }
 }
