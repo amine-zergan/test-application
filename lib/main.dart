@@ -4,8 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-//import 'package:testapp/design/views/home/home_page.dart';
-import 'package:testapp/design/views/home/ui_grocery/shop_ui.dart';
+import 'package:testapp/design/views/home/ui_grocery/details_product.dart';
 import 'package:testapp/injection/di_injection.dart' as getIt;
 
 void main() async {
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const ShopPage(),
+      home: const ProductDetail(),
     );
   }
 }

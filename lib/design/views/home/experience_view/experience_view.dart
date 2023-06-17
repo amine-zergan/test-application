@@ -5,6 +5,18 @@ class ExperienceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Add experience",
+        ),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: ListView(
+          children: const [],
+        ),
+      ),
+    );
   }
 }
